@@ -1,34 +1,14 @@
-// import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import Main from './components/Main';
-// import Quiz from './components/Quiz';
-// import Result from './components/Result';
 import LoginPage from './auth/login/LoginPage'
 import SignUpPage from './auth/signup/SignUpPage'
 import { Routes, Route, Navigate } from "react-router-dom";
-// import { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
-// import LoadingSpinner from "./components/common/LoadingSpinner";
 
 function App() {
-  // const router = createBrowserRouter([
-  //   {
-  //     path: '/',
-  //     element: <Main></Main>
-  //   },
-  //   {
-  //     path: '/quiz',
-  //     element: <Quiz></Quiz>
-  //   },
-  //   {
-  //     path: '/result',
-  //     element: <Result></Result>
-  //   },
-  // ])
-
 
   const {
     data: authUser,
-    isLoading
+    // isLoading
   } = useQuery({
     queryKey: ["authUser"],
     queryFn: async () => {
@@ -49,7 +29,6 @@ function App() {
 
   return (
     <>
-      {/* <RouterProvider router={router}/> */}
       <Routes>
         <Route
           path="/login"
@@ -60,6 +39,7 @@ function App() {
           element={!authUser ? <SignUpPage /> : <Navigate to="/" />}
         />
       </Routes>
+      <Toaster />
     </>
   )
 }
